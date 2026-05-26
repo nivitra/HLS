@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/uploads:/app/uploads
+      - ./backend/hls:/app/hls
+      - ./backend/chroma_db:/app/chroma_db
+    environment:
+      - WHISPER_MODEL=large-v3
+      - EMBEDDING_MODEL=all-MiniLM-L6-v2
+      - CHUNK_MIN_WORDS=120
+      - CHUNK_MAX_WORDS=250
+      - SEMANTIC_WEIGHT=0.7
+      - BM25_WEIGHT=0.3
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped

@@ -1,0 +1,14 @@
+backend/venv/
+backend/__pycache__/
+backend/app/__pycache__/
+backend/app/services/__pycache__/
+backend/app/routers/__pycache__/
+backend/uploads/
+backend/hls/
+backend/chroma_db/
+backend/.env
+frontend/node_modules/
+frontend/dist/
+.DS_Store
+*.pyc
+backend/uvicorn.log
